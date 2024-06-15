@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Artists Song Count</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #myDiv {
+      margin-bottom: 40px;
+    }
+
+    .song-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .song-card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: calc(25% - 10px);
+      margin-bottom: 20px;
+    }
+
+    .song-card img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .song-info {
+      padding: 10px;
+    }
+
+    .song-info p {
+      margin: 5px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .song-card {
+        width: calc(50% - 10px);
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .song-card {
+        width: calc(100% - 10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Top Artists Song Count Over Time</h1>
+  <div id="myDiv"></div>
+  <script>
+    var dates = {{ dates | tojson }};
+    var artistData = {{ artist_data | tojson }};
+    var songData = {{ song_data | tojson }};
+    
+    var traces = [];
+    for (var artist in artistData) {
+        if (artistData.hasOwnProperty(artist)) {
+            var trace = {
+                x: dates,
+                y: artistData[artist],
+                mode: 'lines',
+                name: artist
+            };
+            traces.push(trace);
+        }
+    }
+    
+    var layout = {
+        hovermode: 'closest',
+        title: 'Top Artists Song Count Over Time',
+        xaxis: { title: 'Date' },
+        yaxis: { title: 'Song Count' }
+    };
+    
+    Plotly.newPlot('myDiv', traces, layout);
+
+    var myPlot = document.getElementById('myDiv');
+    myPlot.on('plotly_click', function(data){
+        var point = data.points[0];
+        var artist = point.curveNumber;
+        var date = point.x;
+        var songs = songData[traces[artist].name][date];
+        var message = "Artist: " + traces[artist].name + "\nDate: " + date + "\nSongs: " + songs.join(", ");
+        alert(message);
+    });
+  </script>
+
+  <h2>Today's Top 50 Tracks</h2>
+  <div style="text-align: center; margin-bottom: 20px;">
+    <label for="datePicker">Select Date: </label>
+    <input type="date" id="datePicker" onchange="updateTopTracks()">
+  </div>
+  <div id="songContainer" class="song-container">
+    {% for track in today_top_tracks %}
+      <div class="song-card">
+        <img src="{{ track[2] }}" alt="{{ track[0] }}">
+        <div class="song-info">
+          <p>{{ track[0] }}</p>
+          <p>{{ track[1] }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    function updateTopTracks() {
+      var selectedDate = document.getElementById('datePicker').value;
+      $.get('/top-tracks', { date: selectedDate }, function(data) {
+        var songContainer = document.getElementById('songContainer');
+        songContainer.innerHTML = '';
+        data.forEach(function(track) {
+          var songCard = document.createElement('div');
+          songCard.className = 'song-card';
+          var img = document.createElement('img');
+          img.src = track[2];
+          img.alt = track[0];
+          songCard.appendChild(img);
+          var songInfo = document.createElement('div');
+          songInfo.className = 'song-info';
+          var title = document.createElement('p');
+          title.textContent = track[0];
+          var artist = document.createElement('p');
+          artist.textContent = track[1];
+          songInfo.appendChild(title);
+          songInfo.appendChild(artist);
+          songCard.appendChild(songInfo);
+          songContainer.appendChild(songCard);
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>
