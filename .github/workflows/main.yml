@@ -32,4 +32,5 @@ jobs:
           script: |
             cd /home/ec2-user
             sudo mv * ${{ secrets.TARGET_DIR }}
+            source /home/ec2-user/venv/bin/activate
             sudo systemctl restart flask.service
