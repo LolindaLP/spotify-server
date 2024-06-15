@@ -29,4 +29,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo systemctl restart flaskapp
+            sudo systemctl restart flask_app
