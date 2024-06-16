@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r flask pytest prometheus pytz requests
+          pip install flask pytest prometheus pytz requests
 
       - name: Run tests
         run: |
