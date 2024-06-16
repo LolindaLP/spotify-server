@@ -22,6 +22,11 @@ jobs:
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }} 
 
+      - name: Run tests
+        run: |
+          cd /home/ec2-user
+          python3 test-app.py
+
       - name: Restart Flask application
         uses: appleboy/ssh-action@v1.0.3
         with:
