@@ -24,7 +24,6 @@ jobs:
 
       - name: Run tests
         run: |
-          cd /home/ec2-user
           python3 test_app.py
 
       - name: Restart Flask application
