@@ -24,8 +24,7 @@ jobs:
 
       - name: Run tests
         run: |
-          source /home/ec2-user/venv/bin/activate
-          /home/ec2-user/venv/bin/python3 /home/ec2-user/test_app.py
+          python3 -m pytest
 
       - name: Restart Flask application
         uses: appleboy/ssh-action@v1.0.3
