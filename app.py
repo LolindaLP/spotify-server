@@ -1,11 +1,8 @@
 from flask import Flask, render_template, request, jsonify, Response
-from prometheus_client import start_http_server, Counter, generate_latest
 from datetime import datetime
 import sqlite3
 
 app = Flask(__name__)
-
-DB_REQUEST_COUNT = Counter('db_request_count', 'Total number of database requests')
 
 
 def get_top_tracks_for_date(date, conn=None, database='tracks.db'):
