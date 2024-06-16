@@ -1,15 +1,22 @@
 from flask import Flask, render_template, request, jsonify, Response
 from prometheus_client import start_http_server, Counter, generate_latest
-from datetime import datetime, date
+from datetime import datetime
 import sqlite3
 
 app = Flask(__name__)
 
 DB_REQUEST_COUNT = Counter('db_request_count', 'Total number of database requests')
-start_http_server(8000)
 
-def get_top_tracks_for_date(date):
-    conn = sqlite3.connect('tracks.db')
+
+def get_top_tracks_for_date(date, conn=None, database='tracks.db'):
+    try:
+        datetime.strptime(date, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Invalid date format. Expected format: YYYY-MM-DD")
+    
+    if conn is None:
+        conn = sqlite3.connect(database)
+    
     cursor = conn.cursor()
     
     query = """
@@ -21,8 +28,13 @@ def get_top_tracks_for_date(date):
     """
     cursor.execute(query, (date,))
     tracks = cursor.fetchall()
-    conn.close()
+    
+    # Close the connection if it was created in this function
+    if conn != sqlite3.connect(database):
+        conn.close()
+    
     return tracks
+
 
 def get_top_artists(cursor, limit=5):
     cursor.execute("SELECT artists FROM tracks")
@@ -100,4 +112,3 @@ def top_tracks():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
