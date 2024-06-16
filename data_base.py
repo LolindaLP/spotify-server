@@ -5,6 +5,9 @@ import sqlite3
 import pytz
 import os
 import base64
+import dotenv
+
+dotenv.load_dotenv()
 
 # Получение токена Spotify
 def get_token():
