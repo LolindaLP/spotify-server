@@ -36,9 +36,3 @@
 - The SQLite database ensures data persistence for future access.
 - Daily cron jobs update the database with the latest top 50 tracks.
 </p>
-
-## Setup Instructions
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-username/spotify-top-50-songs.git
