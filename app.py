@@ -65,32 +65,9 @@ def get_data_for_plot(cursor, top_artists):
 
     return dates, artist_data, song_data
 
-@app.route('/metrics')
-def metrics():
-    metrics_data = generate_latest().decode('utf-8')
-    html = '<html><head><title>Metrics</title></head><body>'
-    html += '<h1>Metrics</h1>'
-    html += '<table border="1">'
-    html += '<tr><th>Metric</th><th>Labels</th><th>Value</th></tr>'
-    for line in metrics_data.split('\n'):
-        if line.startswith('#'):
-            continue
-        parts = line.split()
-        if len(parts) < 2:
-            continue
-        metric, value = parts[0], parts[1]
-        if '{' in metric:
-            metric_name, labels = metric.split('{')
-            labels = labels.strip('}')
-        else:
-            metric_name, labels = metric, ''
-        html += f'<tr><td>{metric_name}</td><td>{labels}</td><td>{value}</td></tr>'
-    html += '</table></body></html>'
-    return Response(html, mimetype='text/html')
 
 @app.route('/')
 def index():
-    DB_REQUEST_COUNT.inc()
     conn = sqlite3.connect('tracks.db')
     cursor = conn.cursor()
 
