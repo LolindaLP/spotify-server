@@ -98,10 +98,10 @@ crontab -e
 0 2 * * * echo run_script.sh 
 ```
 <p style="font-size: 16px;">
-Add the following line to the cron table to run the script every day at 2 AM:
+Add content for run_script.sh:
 </p>
 
-```run_script.sh
+```bash
 #!/bin/bash
 
 export CLIENT_ID= your_client_id
