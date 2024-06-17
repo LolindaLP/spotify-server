@@ -68,14 +68,13 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-###
-4. Install Dependencies:
+### 4. Install Dependencies:
   
 ```bash
 pip install -r requirements.txt
 ```
-###
-5. Add Your Secrets:
+
+### 5. Add Your Secrets:
 <p style="font-size: 16px;">
 Create a secrets in Github Actions:
 </p>
@@ -87,8 +86,7 @@ Create a secrets in Github Actions:
 - USERNAME
 ```
 
-###
-6. Set Up Cron Job:
+### 6. Set Up Cron Job:
 <p style="font-size: 16px;">
 To set up a cron job that runs the update_spotify_data.py script daily and logs the execution time, follow these steps:
 
