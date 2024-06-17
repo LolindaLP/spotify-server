@@ -78,9 +78,36 @@ venv\Scripts\activate
 ```
 ###
 4. Install Dependencies:
+<p style="font-size: 16px;">
+  
 ```bash
 pip install -r requirements.txt
 ```
+###
+5. Add Your Secrets:
+<p style="font-size: 16px;">
+Create a secrets in Github Actions:
+EC2_SSH_KEY
+HOST_DNS
+TARGET_DIR
+USERNAME
+
+###
+6. Set Up Cron Job:
+<p style="font-size: 16px;">
+To set up a cron job that runs the update_spotify_data.py script daily and logs the execution time, follow these steps:
+
+Open the cron table for editing:
+```bash
+crontab -e
+```
+
+Add the following line to the cron table to run the script every day at 2 AM:
+
+```bash
+0 2 * * * echo "Cron job executed at $(date)" >> path/to/script/data_base.py
+```
+
 <p style="font-size: 16px;">
 This concise overview captures the essential details and steps for setting up and understanding the project.
 </p>
