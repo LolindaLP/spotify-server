@@ -87,10 +87,13 @@ pip install -r requirements.txt
 5. Add Your Secrets:
 <p style="font-size: 16px;">
 Create a secrets in Github Actions:
+  
+```bash
 - EC2_SSH_KEY
 - HOST_DNS
 - TARGET_DIR
 - USERNAME
+```
 
 ###
 6. Set Up Cron Job:
