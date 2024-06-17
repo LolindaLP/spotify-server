@@ -103,6 +103,11 @@ Add the following line to the cron table to run the script every day at 2 AM:
 </p>
 
 ```bash
+#!/bin/bash
+
+export CLIENT_ID= your_client_id
+export CLIENT_SECRET= your_client_secret
+
 0 2 * * * echo "Cron job executed at $(date)" >> path/to/script/data_base.py
 ```
 
