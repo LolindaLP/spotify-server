@@ -46,16 +46,22 @@ Follow these steps to set up the project from the <a href="https://github.com/Lo
 </p>
 
 ### 1. Install Python:
-Ensure you have Python installed. You can download it from the official [Python website](https://www.python.org/downloads/).
+<p style="font-size: 16px;">
+On Ubuntu/Debian-based systems:
+```bash
+sudo apt update
+sudo apt install python3 python3-venv python3-pip -y
+```
 
 ### 2. Clone the Repository:
+<p style="font-size: 16px;">
 ```bash
 git clone https://github.com/LolindaLP/spotify-server.git
 cd spotify-server
 ```
 
-###
-3. Create and Activate a Virtual Environment:
+### 3. Create and Activate a Virtual Environment:
+<p style="font-size: 16px;">
 
 On macOS and Linux:
 
