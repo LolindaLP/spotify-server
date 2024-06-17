@@ -53,7 +53,6 @@ git clone https://github.com/LolindaLP/spotify-server.git
 
 ### 2. Install Dependencies:
 ```bash
-Copy code
 pip install -r requirements.txt
 ```
 <p style="font-size: 16px;">
