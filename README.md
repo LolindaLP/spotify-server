@@ -95,18 +95,19 @@ Open the cron table for editing:
 
 ```bash
 crontab -e
+0 2 * * * echo run_script.sh 
 ```
 <p style="font-size: 16px;">
 Add the following line to the cron table to run the script every day at 2 AM:
 </p>
 
-```bash
+```run_script.sh
 #!/bin/bash
 
 export CLIENT_ID= your_client_id
 export CLIENT_SECRET= your_client_secret
 
-0 2 * * * echo "Cron job executed at $(date)" >> path/to/script/data_base.py
+/usr/bin/python3 /path/to/data_base.py
 ```
 
 <p style="font-size: 16px;">
