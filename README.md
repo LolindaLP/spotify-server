@@ -48,6 +48,7 @@ Follow these steps to set up the project from the <a href="https://github.com/Lo
 ### 1. Install Python:
 <p style="font-size: 16px;">
 On Ubuntu/Debian-based systems:
+  
 ```bash
 sudo apt update
 sudo apt install python3 python3-venv python3-pip -y
