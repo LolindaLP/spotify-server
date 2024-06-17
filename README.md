@@ -53,7 +53,7 @@ On Ubuntu/Debian-based systems:
 sudo apt update
 sudo apt install python3 python3-venv python3-pip -y
 ```
-
+</p>
 ### 2. Clone the Repository:
 <p style="font-size: 16px;">
   
@@ -61,21 +61,15 @@ sudo apt install python3 python3-venv python3-pip -y
 git clone https://github.com/LolindaLP/spotify-server.git
 cd spotify-server
 ```
-
+</p>
 ### 3. Create and Activate a Virtual Environment:
 <p style="font-size: 16px;">
-
-On macOS and Linux:
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
-On Windows:
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
+</p>
 ###
 4. Install Dependencies:
 <p style="font-size: 16px;">
@@ -83,6 +77,7 @@ venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
+</p>
 ###
 5. Add Your Secrets:
 <p style="font-size: 16px;">
@@ -94,7 +89,7 @@ Create a secrets in Github Actions:
 - TARGET_DIR
 - USERNAME
 ```
-
+</p>
 ###
 6. Set Up Cron Job:
 <p style="font-size: 16px;">
@@ -110,7 +105,7 @@ Add the following line to the cron table to run the script every day at 2 AM:
 ```bash
 0 2 * * * echo "Cron job executed at $(date)" >> path/to/script/data_base.py
 ```
-
+</p>
 <p style="font-size: 16px;">
 This concise overview captures the essential details and steps for setting up and understanding the project.
 </p>
