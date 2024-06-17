@@ -39,22 +39,42 @@ http://35.158.126.82/
 - Daily cron jobs update the database with the latest top 50 tracks.
 </p>
 
-
-## Setup Instructions
+##
+Setup Instructions
 
 <p style="font-size: 18px;">
 Follow these steps to set up the project from the <a href="https://github.com/LolindaLP/spotify-server">repository</a>:
 </p>
 
-### 1. Clone the Repository:
+### 1. Install Python:
+Ensure you have Python installed. You can download it from the official [Python website](https://www.python.org/downloads/).
+
+### 2. Clone the Repository:
 ```bash
 git clone https://github.com/LolindaLP/spotify-server.git
+cd spotify-server
 ```
 
-### 2. Install Dependencies:
+##
+3. Create and Activate a Virtual Environment:
+
+On macOS and Linux:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+On Windows:
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+##
+4. Install Dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 <p style="font-size: 16px;">
 This concise overview captures the essential details and steps for setting up and understanding the project.
 </p>
+
