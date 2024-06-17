@@ -43,7 +43,7 @@ http://35.158.126.82/
 
 <p style="font-size: 18px;">
 Follow these steps to set up the project from the <a href="https://github.com/LolindaLP/spotify-server">repository</a>:
-
+</p>
 
 ### 1. Install Python:
 <p style="font-size: 16px;">
@@ -110,4 +110,3 @@ Add the following line to the cron table to run the script every day at 2 AM:
 This concise overview captures the essential details and steps for setting up and understanding the project.
 </p>
 
-</p>
