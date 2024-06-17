@@ -56,6 +56,7 @@ sudo apt install python3 python3-venv python3-pip -y
 
 ### 2. Clone the Repository:
 <p style="font-size: 16px;">
+  
 ```bash
 git clone https://github.com/LolindaLP/spotify-server.git
 cd spotify-server
