@@ -113,3 +113,49 @@ export CLIENT_SECRET= your_client_secret
 <p style="font-size: 16px;">
 This concise overview captures the essential details and steps for setting up and understanding the project.
 </p>
+
+
+### 7. Set Up Nginx:
+<p style="font-size: 16px;">
+</p>
+
+```bash
+sudo apt install nginx
+
+cd /ect/nginx/sites-enabled/
+sudo nano fastapi_nginx
+
+server {
+  listen 80;
+  server_name server_name;
+  location / {
+    proxy_pass http://127.0.0.1:8000;
+  }
+}
+sudo service nginx restart
+```
+
+
+
+
+### 7. Set Up Systemd Fastapi:
+<p style="font-size: 16px;">
+
+</p>
+
+```bash
+cd /etc/systemd/system/
+sudo nano flask_app.service 
+
+Description=Flask App
+After=network.target
+[Service]
+User=YOUR_||USERNAME|
+WorkingDirectory=YOUR WORKING
+ExecStart=/home/ec2-user/venv/bin/gunicorn -b localhost:5000 app:app
+Restart=always
+[Install]
+WantedBy=multi-user.target
+
+sudo service flask_app start
+```
