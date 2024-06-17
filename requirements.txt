@@ -1,0 +1,5 @@
+flask
+pytest
+pytz
+requests
+gunicorn
