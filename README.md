@@ -43,17 +43,9 @@ http://35.158.126.82/
 ## Setup Instructions
 
 <p style="font-size: 18px;">
-Follow these steps to set up the project from the [repository](https://github.com/LolindaLP/spotify-server):
+Follow these steps to set up the project from the <a href="https://github.com/LolindaLP/spotify-server">repository</a>:
 </p>
 
 ### 1. Clone the Repository:
 ```bash
-git clone https://github.com/LolindaLP/spotify-server.git'''
-2. Install Dependencies:
-'''bash
-Copy code
-pip install -r requirements.txt'''
-<p style="font-size: 16px;">
-This concise overview captures the essential details and steps for setting up and understanding the project.
-</p>
-```
+git clone https://github.com/LolindaLP/spotify-server.git
