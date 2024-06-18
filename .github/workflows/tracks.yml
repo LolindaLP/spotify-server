@@ -58,12 +58,14 @@ jobs:
           scp -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }}:${{ secrets.TARGET_DIR }}/tracks.db ./
 
       - name: Commit and push tracks.db
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add tracks.db
           git commit -m "Update tracks.db"
-          git push
+          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: Restart Flask application
         uses: appleboy/ssh-action@v1.0.3
