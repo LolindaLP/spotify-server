@@ -25,7 +25,6 @@ def get_token():
     data = {"grant_type": "client_credentials"}
     r = requests.post(url, headers=headers, data=data)
     access_token = r.json()["access_token"]
-    print("huj")
     return access_token
 
 # Обновление базы данных треков
@@ -42,7 +41,7 @@ def update_database():
         playlist_data = response.json()
         tracks = playlist_data.get('items', [])
 
-        conn = sqlite3.connect('tracks.db')
+        conn = sqlite3.connect('tracksdb/tracks.db')
         c = conn.cursor()
 
         for track in tracks:
