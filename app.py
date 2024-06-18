@@ -5,7 +5,7 @@ import sqlite3
 app = Flask(__name__)
 
 
-def get_top_tracks_for_date(date, conn=None, database='tracks.db'):
+def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
     try:
         datetime.strptime(date, '%Y-%m-%d')
     except ValueError:
@@ -68,7 +68,7 @@ def get_data_for_plot(cursor, top_artists):
 
 @app.route('/')
 def index():
-    conn = sqlite3.connect('tracks.db')
+    conn = sqlite3.connect('tracksdb/tracks.db')
     cursor = conn.cursor()
 
     today = datetime.today().strftime('%Y-%m-%d')
