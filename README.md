@@ -119,10 +119,6 @@ export CLIENT_SECRET= your_client_secret
 /usr/bin/python3 /path/to/data_base.py
 ```
 
-<p style="font-size: 16px;">
-This concise overview captures the essential details and steps for setting up and understanding the project.
-</p>
-
 
 ### 8. Set Up Nginx:
 <p style="font-size: 16px;">
@@ -166,3 +162,7 @@ WantedBy=multi-user.target
 
 sudo service flask_app start
 ```
+
+<p style="font-size: 16px;">
+This concise overview captures the essential details and steps for setting up and understanding the project.
+</p>
