@@ -1,6 +1,6 @@
 # Spotify Top 50 Songs
 
-http://35.158.126.82/
+http://ec2-52-59-172-131.eu-central-1.compute.amazonaws.com/
 
 ## Project Overview
 
