@@ -57,7 +57,7 @@ jobs:
           script: |
             sudo systemctl restart flask_app
             
-      - name: Install flake8 and run linting
+      - name: Install black and run formatting
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST_DNS }}
@@ -65,4 +65,4 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ${{ secrets.TARGET_DIR }}
-            flake8 data_base.py test_app.py app.py
+            black app.py data_base.py test_app.py
