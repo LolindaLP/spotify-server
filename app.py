@@ -14,10 +14,10 @@ def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
         conn = sqlite3.connect(database)
     cursor = conn.cursor()
     query = """
-    SELECT name, artists, image 
-    FROM tracks 
-    WHERE date = ? 
-    ORDER BY popularity DESC 
+    SELECT name, artists, image
+    FROM tracks
+    WHERE date = ?
+    ORDER BY popularity DESC
     LIMIT 50
     """
     cursor.execute(query, (date,))
@@ -35,7 +35,8 @@ def get_top_artists(cursor, limit=5):
         artists = artists_str[0].split(", ")
         for artist in artists:
             artist_count[artist] = artist_count.get(artist, 0) + 1
-    top_artists = sorted(artist_count.items(), key=lambda x: x[1], reverse=True)[:limit]
+    top_artists = sorted(artist_count.items(),
+                         key=lambda x: x[1], reverse=True)[:limit]
     return top_artists
 
 
@@ -48,12 +49,14 @@ def get_data_for_plot(cursor, top_artists):
     for date in all_dates:
         dates.append(date[0])
         for artist, _ in top_artists:
-            cursor.execute("SELECT COUNT(*) FROM tracks WHERE artists LIKE ? AND date = ?", ('%'+artist+'%', date[0]))
+            cursor.execute("SELECT COUNT(*) FROM tracks WHERE artists LIKE ? AND date = ?",
+                           ('%'+artist+'%', date[0]))
             count = cursor.fetchone()[0]
             artist_data[artist].append(count)
-            cursor.execute("SELECT name FROM tracks WHERE artists LIKE ? AND date = ?", ('%'+artist+'%', date[0]))
-            song_titles = [row[0] for row in cursor.fetchall()]  # Extract song titles
-            song_data[artist][date[0]] = song_titles  # Store songs for artist on that date
+            cursor.execute("SELECT name FROM tracks WHERE artists LIKE ? AND date = ?",
+                           ('%'+artist+'%', date[0]))
+            song_titles = [row[0] for row in cursor.fetchall()]
+            song_data[artist][date[0]] = song_titles
     return dates, artist_data, song_data
 
 
