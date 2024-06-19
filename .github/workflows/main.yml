@@ -57,6 +57,12 @@ jobs:
           script: |
             sudo systemctl restart flask_app
             
-      - name: Run flake8
-        run: |
-          flake8 .
+      - name: Install flake8 and run linting
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ${{ secrets.TARGET_DIR }}
+            flake8 .
