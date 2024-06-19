@@ -3,3 +3,4 @@ pytest
 pytz
 requests
 gunicorn
+flake8
