@@ -50,12 +50,12 @@ def get_data_for_plot(cursor, top_artists):
         dates.append(date[0])
         for artist, _ in top_artists:
             cursor.execute("SELECT COUNT(*) FROM tracks
-            WHERE artists LIKE ? AND date = ?",
+                WHERE artists LIKE ? AND date = ?",
                            ('%'+artist+'%', date[0]))
             count = cursor.fetchone()[0]
             artist_data[artist].append(count)
             cursor.execute("SELECT name FROM tracks
-            WHERE artists LIKE ? AND date = ?",
+                WHERE artists LIKE ? AND date = ?",
                            ('%'+artist+'%', date[0]))
             song_titles = [row[0] for row in cursor.fetchall()]
             song_data[artist][date[0]] = song_titles
