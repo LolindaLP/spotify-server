@@ -1,16 +1,14 @@
-from flask import Flask, render_template, request, jsonify, Response
+from flask import Flask, render_template, request, jsonify
 from datetime import datetime
 import sqlite3
 
 app = Flask(__name__)
-
 
 def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
     try:
         datetime.strptime(date, '%Y-%m-%d')
     except ValueError:
         raise ValueError("Invalid date format. Expected format: YYYY-MM-DD")
-    
     if conn is None:
         conn = sqlite3.connect(database)
     
@@ -25,13 +23,10 @@ def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
     """
     cursor.execute(query, (date,))
     tracks = cursor.fetchall()
-    
-    # Close the connection if it was created in this function
+
     if conn != sqlite3.connect(database):
         conn.close()
-    
     return tracks
-
 
 def get_top_artists(cursor, limit=5):
     cursor.execute("SELECT artists FROM tracks")
@@ -57,20 +52,15 @@ def get_data_for_plot(cursor, top_artists):
             cursor.execute("SELECT COUNT(*) FROM tracks WHERE artists LIKE ? AND date = ?", ('%'+artist+'%', date[0]))
             count = cursor.fetchone()[0]
             artist_data[artist].append(count)
-
-            # Add logic to fetch song titles for the current artist and date
             cursor.execute("SELECT name FROM tracks WHERE artists LIKE ? AND date = ?", ('%'+artist+'%', date[0]))
             song_titles = [row[0] for row in cursor.fetchall()]  # Extract song titles
             song_data[artist][date[0]] = song_titles  # Store songs for artist on that date
-
     return dates, artist_data, song_data
-
 
 @app.route('/')
 def index():
     conn = sqlite3.connect('tracksdb/tracks.db')
     cursor = conn.cursor()
-
     today = datetime.today().strftime('%Y-%m-%d')
     today_top_tracks = get_top_tracks_for_date(today)
     top_artists = get_top_artists(cursor)
