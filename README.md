@@ -86,7 +86,16 @@ Create a secrets in Github Actions:
 - USERNAME
 ```
 
-### 6. Set Up Cron Job:
+### 6. Download last version of data base:
+<p style="font-size: 16px;">
+Clone git repository with last version of data base
+</p>
+
+```bash
+git clone git@github.com:LolindaLP/tracksdb.git
+```
+
+### 7. Set Up Cron Job:
 <p style="font-size: 16px;">
 To set up a cron job that runs the update_spotify_data.py script daily and logs the execution time, follow these steps:
 
@@ -115,7 +124,7 @@ This concise overview captures the essential details and steps for setting up an
 </p>
 
 
-### 7. Set Up Nginx:
+### 8. Set Up Nginx:
 <p style="font-size: 16px;">
 </p>
 
@@ -136,9 +145,7 @@ sudo service nginx restart
 ```
 
 
-
-
-### 7. Set Up Systemd Fastapi:
+### 9. Set Up Systemd Fastapi:
 <p style="font-size: 16px;">
 
 </p>
