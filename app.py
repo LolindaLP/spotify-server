@@ -4,6 +4,7 @@ import sqlite3
 
 app = Flask(__name__)
 
+
 def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
     try:
         datetime.strptime(date, '%Y-%m-%d')
@@ -11,9 +12,7 @@ def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
         raise ValueError("Invalid date format. Expected format: YYYY-MM-DD")
     if conn is None:
         conn = sqlite3.connect(database)
-    
     cursor = conn.cursor()
-    
     query = """
     SELECT name, artists, image 
     FROM tracks 
@@ -23,10 +22,10 @@ def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
     """
     cursor.execute(query, (date,))
     tracks = cursor.fetchall()
-
     if conn != sqlite3.connect(database):
         conn.close()
     return tracks
+
 
 def get_top_artists(cursor, limit=5):
     cursor.execute("SELECT artists FROM tracks")
@@ -39,11 +38,11 @@ def get_top_artists(cursor, limit=5):
     top_artists = sorted(artist_count.items(), key=lambda x: x[1], reverse=True)[:limit]
     return top_artists
 
+
 def get_data_for_plot(cursor, top_artists):
     dates = []
     artist_data = {artist: [] for artist, _ in top_artists}
     song_data = {artist: {} for artist, _ in top_artists}  # New variable
-
     cursor.execute("SELECT DISTINCT date FROM tracks ORDER BY date")
     all_dates = cursor.fetchall()
     for date in all_dates:
@@ -57,6 +56,7 @@ def get_data_for_plot(cursor, top_artists):
             song_data[artist][date[0]] = song_titles  # Store songs for artist on that date
     return dates, artist_data, song_data
 
+
 @app.route('/')
 def index():
     conn = sqlite3.connect('tracksdb/tracks.db')
@@ -65,14 +65,16 @@ def index():
     today_top_tracks = get_top_tracks_for_date(today)
     top_artists = get_top_artists(cursor)
     dates, artist_data, song_data = get_data_for_plot(cursor, top_artists)
+    return render_template('index.html', dates=dates,artist_data=artist_data,
+                           today_top_tracks=today_top_tracks, song_data=song_data)
 
-    return render_template('index.html', dates=dates,artist_data=artist_data, today_top_tracks=today_top_tracks, song_data=song_data)
 
 @app.route('/top-tracks', methods=['GET'])
 def top_tracks():
     date = request.args.get('date')
     tracks = get_top_tracks_for_date(date)
     return jsonify(tracks)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
