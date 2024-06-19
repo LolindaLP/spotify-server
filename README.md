@@ -1,6 +1,6 @@
 # Spotify Top 50 Songs
 
-http://ec2-52-59-172-131.eu-central-1.compute.amazonaws.com/
+http://tgs50.com/
 
 ## Project Overview
 
