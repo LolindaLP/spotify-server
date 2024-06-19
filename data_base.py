@@ -28,7 +28,7 @@ def get_token():
 
 def update_database():
     access_token = get_token()
-    playlist_id = "37i9dQZEVXbMDoHDwVN2tF" 
+    playlist_id = "37i9dQZEVXbMDoHDwVN2tF"
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
     headers = {
         "Authorization": f"Bearer {access_token}"
@@ -45,7 +45,7 @@ def update_database():
             track_image = track['track']['album']['images'][0]['url'] if track['track']['album']['images'] else None
             track_popularity = track['track']['popularity']
             track_date = datetime.now(pytz.utc).strftime('%Y-%m-%d')
-            c.execute("SELECT COUNT(*) FROM tracks WHERE name = ? AND artists = ? AND date = ?", 
+            c.execute("SELECT COUNT(*) FROM tracks WHERE name = ? AND artists = ? AND date = ?",
                       (track_name, track_artists, track_date))
             data_exists = c.fetchone()[0] > 0
             if not data_exists:
