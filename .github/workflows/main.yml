@@ -56,3 +56,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             sudo systemctl restart flask_app
+            
+      - name: Run flake8
+        run: |
+          flake8 .
