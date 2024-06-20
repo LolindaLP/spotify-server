@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top Artists Song Count-</title>
+  <title>Top Artists Song Count</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -109,7 +111,7 @@
   <h2>Today's Top 50 Tracks</h2>
   <div style="text-align: center; margin-bottom: 20px;">
     <label for="datePicker">Select Date: </label>
-    <input type="date" id="datePicker" onchange="updateTopTracks()">
+    <input type="text" id="datePicker" onchange="updateTopTracks()">
   </div>
   <div id="songContainer" class="song-container">
     {% for track in today_top_tracks %}
@@ -124,6 +126,23 @@
   </div>
 
   <script>
+    var availableDates = {{ available_dates|tojson }};
+
+    function available(date) {
+      var dmy = $.datepicker.formatDate('yy-mm-dd', date);
+      return [availableDates.includes(dmy)];
+    }
+
+    $(function() {
+      $("#datePicker").datepicker({
+        beforeShowDay: available,
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+          updateTopTracks();
+        }
+      });
+    });
+
     function updateTopTracks() {
       var selectedDate = document.getElementById('datePicker').value;
       $.get('/top-tracks', { date: selectedDate }, function(data) {
@@ -150,6 +169,5 @@
       });
     }
   </script>
-
 </body>
 </html>
