@@ -127,14 +127,13 @@ export CLIENT_SECRET= your_client_secret
 ```bash
 sudo apt install nginx
 
-cd /ect/nginx/sites-enabled/
-sudo nano fastapi_nginx
+sudo nano /etc/nginx/conf.d/myapp.conf
 
 server {
   listen 80;
-  server_name server_name;
+  server_name tgs50.com www.tgs50.com;
   location / {
-    proxy_pass http://127.0.0.1:8000;
+    proxy_pass http://127.0.0.1:5000;
   }
 }
 sudo service nginx restart
