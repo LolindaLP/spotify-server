@@ -96,5 +96,13 @@ def available_dates():
     return jsonify(all_dates)
 
 
+@app.route('/top-tracks', methods=['GET'])
+def top_tracks():
+    date = request.args.get('date')
+    tracks = get_top_tracks_for_date(date)
+    return jsonify(tracks)
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
