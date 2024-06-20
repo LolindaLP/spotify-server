@@ -27,6 +27,23 @@ def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
     return tracks
 
 
+def get_available_dates(conn=None, database='tracks.db'):
+    if conn is None:
+        conn = sqlite3.connect(database)
+    
+    cursor = conn.cursor()
+    
+    query = "SELECT DISTINCT date FROM tracks ORDER BY date"
+    cursor.execute(query)
+    all_dates = [row[0] for row in cursor.fetchall()]
+    
+    # Close the connection if it was created in this function
+    if conn != sqlite3.connect(database):
+        conn.close()
+    
+    return all_dates
+
+
 def get_top_artists(cursor, limit=5):
     cursor.execute("SELECT artists FROM tracks")
     all_artists = cursor.fetchall()
@@ -68,16 +85,15 @@ def index():
     today_top_tracks = get_top_tracks_for_date(today)
     top_artists = get_top_artists(cursor)
     dates, artist_data, song_data = get_data_for_plot(cursor, top_artists)
-    return render_template('index.html', dates=dates, artist_data=artist_data,
-                           today_top_tracks=today_top_tracks,
-                           song_data=song_data)
+    available_dates = get_available_dates()
+
+    return render_template('index.html', dates=dates, artist_data=artist_data, today_top_tracks=today_top_tracks, song_data=song_data, available_dates=available_dates)
 
 
-@app.route('/top-tracks', methods=['GET'])
-def top_tracks():
-    date = request.args.get('date')
-    tracks = get_top_tracks_for_date(date)
-    return jsonify(tracks)
+@app.route('/available-dates')
+def available_dates():
+    all_dates = get_available_dates()
+    return jsonify(all_dates)
 
 
 if __name__ == '__main__':
