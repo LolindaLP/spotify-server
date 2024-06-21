@@ -27,7 +27,7 @@ def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
     return tracks
 
 
-def get_available_dates(conn=None, database='tracks.db'):
+def get_available_dates(conn=None, database='tracksdb/tracks.db'):
     if conn is None:
         conn = sqlite3.connect(database)
     
