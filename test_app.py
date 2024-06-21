@@ -170,7 +170,7 @@ class TestSpotifyDatabaseUpdate(unittest.TestCase):
         sys.stdout = sys.__stdout__
         
         # Connect to the database and check if the data was inserted
-        conn = sqlite3.connect('tracks.db')
+        conn = sqlite3.connect('tracksdb/tracks.db')
         c = conn.cursor()
         
         c.execute("SELECT * FROM tracks WHERE name = 'Fake Track' AND artists = 'Fake Artist'")
