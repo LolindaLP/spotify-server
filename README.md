@@ -92,7 +92,7 @@ Clone git repository with last version of data base
 </p>
 
 ```bash
-git clone git@github.com:LolindaLP/tracksdb.git
+git clone https://github.com/LolindaLP/tracksdb.git
 ```
 
 ### 7. Set Up Cron Job:
