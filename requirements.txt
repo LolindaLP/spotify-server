@@ -4,3 +4,4 @@ pytz
 requests
 gunicorn
 flake8
+python-dotenv
