@@ -3,9 +3,9 @@ Description=Flask App
 After=network.target
 
 [Service]
-User=ubuntu
-WorkingDirectory=/home/ubuntu/spotify-server
-ExecStart=/home/ubuntu/spotify-server/venv/bin/gunicorn -b localhost:5000 app:app
+User=ec2-user
+WorkingDirectory=/home/ec2-user/spotify-server
+ExecStart=/home/ec2-user/spotify-server/venv/bin/gunicorn -b localhost:5000 app:app
 Restart=always
 
 [Install]
