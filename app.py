@@ -5,7 +5,7 @@ import sqlite3
 app = Flask(__name__)
 
 
-def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
+def get_top_tracks_for_date(date, conn=None, database='/home/ec2-user/spotify-server/tracksdb/tracks.db'):
     try:
         datetime.strptime(date, '%Y-%m-%d')
     except ValueError:
@@ -27,7 +27,7 @@ def get_top_tracks_for_date(date, conn=None, database='tracksdb/tracks.db'):
     return tracks
 
 
-def get_available_dates(conn=None, database='tracksdb/tracks.db'):
+def get_available_dates(conn=None, database='/home/ec2-user/spotify-server/tracksdb/tracks.db'):
     if conn is None:
         conn = sqlite3.connect(database)
     
@@ -79,7 +79,7 @@ def get_data_for_plot(cursor, top_artists):
 
 @app.route('/')
 def index():
-    conn = sqlite3.connect('tracksdb/tracks.db')
+    conn = sqlite3.connect('/home/ec2-user/spotify-server/tracksdb/tracks.db')
     cursor = conn.cursor()
     today = datetime.today().strftime('%Y-%m-%d')
     today_top_tracks = get_top_tracks_for_date(today)
