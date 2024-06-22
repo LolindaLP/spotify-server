@@ -37,7 +37,7 @@ def update_database():
     if response.status_code == 200:
         playlist_data = response.json()
         tracks = playlist_data.get('items', [])
-        conn = sqlite3.connect('tracksdb/tracks.db')
+        conn = sqlite3.connect('/home/ec2-user/spotify-server/tracksdb/tracks.db')
         c = conn.cursor()
         for track in tracks:
             track_name = track['track']['name']
