@@ -1,6 +1,6 @@
 # Spotify Top 50 Songs
 
-http://tgs50.com/
+https://tgs50.com/
 
 ## Project Overview
 
@@ -45,36 +45,7 @@ http://tgs50.com/
 Follow these steps to set up the project from the <a href="https://github.com/LolindaLP/spotify-server">repository</a>:
 </p>
 
-### 1. Install Python:
-<p style="font-size: 16px;">
-On Ubuntu/Debian-based systems:
-</p>
-
-```bash
-sudo apt update
-sudo apt install python3 python3-venv python3-pip -y
-```
-### 2. Clone the Repository:
-  
-```bash
-git clone https://github.com/LolindaLP/spotify-server.git
-cd spotify-server
-```
-
-### 3. Create and Activate a Virtual Environment:
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 4. Install Dependencies:
-  
-```bash
-pip install -r requirements.txt
-```
-
-### 5. Add Your Secrets:
+### 1. Add Your Secrets:
 <p style="font-size: 16px;">
 Create a secrets in Github Actions:
 </p>
@@ -85,116 +56,18 @@ Create a secrets in Github Actions:
 - TARGET_DIR
 - USERNAME
 ```
-
-### 6. Download last version of data base:
 <p style="font-size: 16px;">
-Clone git repository with last version of data base
+Paste into Makefile your Spotify Api credentials
+</p>
+
+### 2. Install make:
+<p style="font-size: 16px;">
+Install and start makefile:
 </p>
 
 ```bash
-git clone https://github.com/LolindaLP/tracksdb.git
-```
-
-### 7. Set Up Cron Job:
-<p style="font-size: 16px;">
-To set up a cron job that runs the update_spotify_data.py script daily and logs the execution time, follow these steps:
-
-Open the cron table for editing:
-</p>
-
-```bash
-crontab -e
-0 2 * * * echo run_script.sh 
-```
-<p style="font-size: 16px;">
-Add content for run_script.sh:
-</p>
-
-```bash
-#!/bin/bash
-
-export CLIENT_ID= your_client_id
-export CLIENT_SECRET= your_client_secret
-
-/usr/bin/python3 /path/to/data_base.py
-```
-
-
-### 8. Set Up Nginx:
-<p style="font-size: 16px;">
-</p>
-
-```bash
-sudo apt install nginx
-
-sudo nano /etc/nginx/conf.d/myapp.conf
-
-server {
-  listen 80;
-  server_name tgs50.com www.tgs50.com;
-  location / {
-    proxy_pass http://127.0.0.1:5000;
-  }
-}
-
-sudo nano /etc/nginx/conf.d/fastapi_ssl.conf
-
-server {
-    listen 443 ssl;
-    server_name tgs50.com www.tgs50.com;
-
-    ssl_certificate /etc/letsencrypt/live/tgs50.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/tgs50.com/privkey.pem;
-
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-
-    location / {
-        proxy_pass http://127.0.0.1:8000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_redirect off;
-    }
-
-    # Дополнительные настройки, если нужно
-    location /static {
-        alias /path/to/your/fastapi/static;
-    }
-
-    location /media {
-        alias /path/to/your/fastapi/media;
-    }
-
-    error_log /var/log/nginx/fastapi_ssl_error.log;
-    access_log /var/log/nginx/fastapi_ssl_access.log;
-}
-
-sudo service nginx restart
-```
-
-
-### 9. Set Up Systemd Fastapi:
-<p style="font-size: 16px;">
-
-</p>
-
-```bash
-cd /etc/systemd/system/
-sudo nano flask_app.service 
-
-Description=Flask App
-After=network.target
-[Service]
-User=YOUR_||USERNAME|
-WorkingDirectory=YOUR WORKING
-ExecStart=/home/ec2-user/venv/bin/gunicorn -b localhost:5000 app:app
-Restart=always
-[Install]
-WantedBy=multi-user.target
-
-sudo service flask_app start
+sudo yum install make
+make
 ```
 
 <p style="font-size: 16px;">
