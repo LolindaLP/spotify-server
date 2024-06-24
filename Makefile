@@ -5,8 +5,8 @@ DB_DIR := $(PROJECT_DIR)/tracksdb
 PYTHON_VERSION := python3
 VENV_DIR := $(PROJECT_DIR)/venv
 
-export CLIENT_ID := 7c78618b17804ba785e3e28f499d6812
-export CLIENT_SECRET := cb4a891b863249d2abdec241a6b6861e
+export CLIENT_ID := your_client_id
+export CLIENT_SECRET := your_client_secret
 
 all: install_dependencies clone_repo clone_db setup_env setup_nginx setup_cron start_app test_app
 
