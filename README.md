@@ -10,9 +10,9 @@ https://tgs50.com/
 
 ### 1. Daily Data Acquisition:
 <p style="font-size: 16px;">
-- A cron job runs a Python script daily to generate a Spotify API access token.
-- The script fetches the Spotify Top 50 Global playlist data.
-- Track details (title, artist, album, popularity) are extracted and stored in an SQLite database.
+<br>- A cron job runs a Python script daily to generate a Spotify API access token.
+<br>- The script fetches the Spotify Top 50 Global playlist data.
+<br>- Track details (title, artist, album, popularity) are extracted and stored in an SQLite database.
 </p>
 
 ### 2. Data Storage:
