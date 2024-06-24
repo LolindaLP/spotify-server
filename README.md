@@ -77,11 +77,13 @@ Follow these steps to set up the project from the <a href="https://github.com/Lo
   <p style="font-size: 16px;">
   1. Download the Makefile to EC2:
     <br> On your EC2 instance, use curl or wget to download the Makefile from the provided URL:
-    ```bash
-      cd /home/ec2-user/
-      wget https://github.com/LolindaLP/spotify-server/raw/master/Makefile
-    ```
     
+```bash
+cd /home/ec2-user/
+wget https://github.com/LolindaLP/spotify-server/raw/master/Makefile
+```
+  </p>
+  <p style="font-size: 16px;">
    2. Paste Spotify API Credentials:
      <br>  Open the Makefile and add your Spotify API credentials:
 
