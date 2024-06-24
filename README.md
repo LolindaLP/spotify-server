@@ -61,39 +61,35 @@ Follow these steps to set up the project from the <a href="https://github.com/Lo
 
 #### 2. Connect to Your EC2 Instance.
 
-
 ### 2. Add Your Secrets
 <p style="font-size: 16px;">
 Create secrets in Github Actions if you want to update your server with it:
-</p>
 <ul>
 <li>EC2_SSH_KEY
 <li>HOST_DNS
 <li>TARGET_DIR
 <li>USERNAME
 </ul>
-
+</p>
 
 ### 3. Download the Makefile
 <p style="font-size: 16px;">
 1. Download the Makefile to EC2:
-</p>
 <br> On your EC2 instance, use curl or wget to download the Makefile from the provided URL:
-    
+
 ```bash
 cd /home/ec2-user/
 wget https://github.com/LolindaLP/spotify-server/raw/master/Makefile
 ```
+</p>
 <p style="font-size: 16px;">
 2. Paste Spotify API Credentials:
-</p>
 <br>  Open the Makefile and add your Spotify API credentials:
 
 ```bash
 nano /home/ec2-user/Makefile
 ```
-
-
+</p>
 ### 4. Install 'make'
 <p style="font-size: 16px;">
 Install make and run the Makefile:
