@@ -47,29 +47,28 @@ Follow these steps to set up the project from the <a href="https://github.com/Lo
 
 ### 1. Create Your EC2 Instance
 
-> #### 1. Launch an EC2 Instance:
+#### 1. Launch an EC2 Instance:
 <p style="font-size: 14px;">
-> <br>- Go to the AWS Management Console.
-> <br>- Navigate to the EC2 Dashboard.
-> <br>- Click on "Launch Instance".
-> <br>- Select an Amazon Machine Image (AMI) (e.g., Amazon Linux 2).
-> <br>- Choose an instance type (e.g., t2.micro).
-> <br>- Configure instance details and add storage as needed.
-> <br>- Configure the security group to allow SSH (port 22).
-> <br>- Review and launch the instance.
+> <br> * Go to the AWS Management Console.
+> <br> * Navigate to the EC2 Dashboard.
+> <br> * Click on "Launch Instance".
+> <br> * Select an Amazon Machine Image (AMI) (e.g., Amazon Linux 2).
+> <br> * Choose an instance type (e.g., t2.micro).
+> <br> * Configure instance details and add storage as needed.
+> <br> * Configure the security group to allow SSH (port 22).
+> <br> * Review and launch the instance.
 </p>
-
-> #### 2. Connect to Your EC2 Instance.
+#### 2. Connect to Your EC2 Instance.
 
 
 ### 2. Add Your Secrets
 <p style="font-size: 16px;">
 Create secrets in Github Actions if you want to update your server with it:
 <p style="font-size: 14px;">
-<br>- EC2_SSH_KEY
-<br>- HOST_DNS
-<br>- TARGET_DIR
-<br>- USERNAME
+<br> * EC2_SSH_KEY
+<br> * HOST_DNS
+<br> * TARGET_DIR
+<br> * USERNAME
 </p>
 </p>
 
