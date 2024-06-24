@@ -45,19 +45,19 @@ https://tgs50.com/
 Follow these steps to set up the project from the <a href="https://github.com/LolindaLP/spotify-server">repository</a>:
 </p>
 
-### 1. Add Your Secrets:
+### 1. Create Your EC2 Instance:
 <p style="font-size: 16px;">
-Create a secrets in Github Actions:
-</p>
-
-```bash
-- EC2_SSH_KEY
-- HOST_DNS
-- TARGET_DIR
-- USERNAME
-```
-<p style="font-size: 16px;">
-Paste into Makefile your Spotify Api credentials
+1. Launch an EC2 Instance:
+  <p style="font-size: 14px;">
+  - Go to the AWS Management Console.
+  - Navigate to the EC2 Dashboard.
+  - Click on "Launch Instance".
+  - Select an Amazon Machine Image (AMI) (e.g., Amazon Linux 2).
+  - Choose an instance type (e.g., t2.micro).
+  - Configure instance details and add storage as needed.
+  - Configure the security group to allow SSH (port 22).
+  - Review and launch the instance.
+  </p>
 </p>
 
 ### 2. Install make:
