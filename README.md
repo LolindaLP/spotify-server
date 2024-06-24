@@ -46,8 +46,8 @@ Follow these steps to set up the project from the <a href="https://github.com/Lo
 </p>
 
 ### 1. Create Your EC2 Instance
-<p style="font-size: 16px;">
-1. Launch an EC2 Instance:
+
+#### 1. Launch an EC2 Instance:
 <p style="font-size: 14px;">
 <br>- Go to the AWS Management Console.
 <br>- Navigate to the EC2 Dashboard.
@@ -60,7 +60,7 @@ Follow these steps to set up the project from the <a href="https://github.com/Lo
 </p>
 
 2. Connect to Your EC2 Instance.
-</p>
+
 
 ### 2. Add Your Secrets
 <p style="font-size: 16px;">
