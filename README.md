@@ -90,6 +90,7 @@ wget https://github.com/LolindaLP/spotify-server/raw/master/Makefile
 nano /home/ec2-user/Makefile
 ```
 </p>
+
 ### 4. Install 'make'
 <p style="font-size: 16px;">
 Install make and run the Makefile:
